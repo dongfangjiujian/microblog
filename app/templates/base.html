@@ -30,3 +30,10 @@ Welcome to microblog
         </div>
     </nav>
 {% endblock %}
+{% block content%}
+<div class="container">
+    {% block app_content%}
+
+    {% endblock%}
+</div>
+{%endblock%}

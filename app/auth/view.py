@@ -33,5 +33,5 @@ def register():
         u=User.query.filter_by(username = form.username.data).all()
         print(u)
         flash("You have registered successfully.s")
-        return redirect(url_for('main.index'))
+        return redirect(url_for('admin.index'))
     return render_template('auth/register.html',title='Register',form=form)

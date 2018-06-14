@@ -1,0 +1,26 @@
+{% extends 'base.html'%}
+{% block app_content%}
+{% if user_list%}
+<table class="table">
+    <thead>
+
+        <td>id</td>
+        <td>username</td>
+        <td>email</td>
+        <td>password</td>
+        <td>id</td>
+    </thead>
+    <tbody>
+    {% for u in user_list%}
+    <tr>
+        <td>{{u.id}}</td>
+        <td>{{u.username}}</td>
+        <td>{{u.email}}</td>
+        <td>{{u.password}}</td>
+    </tr>
+
+    {% endfor%}
+    </tbody>
+</table>
+{% endif%}
+{% endblock%}

@@ -1,9 +1,12 @@
 from . import admin
 from app import db
+from flask_login import login_required
 from app.models import User
+
 from flask import redirect,url_for ,render_template,flash
 
 @admin.route('/index')
+@login_required
 def index():
     user_list = User.query.all()
     return render_template('admin/index.html',title='ShowUsers',user_list=user_list)

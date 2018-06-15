@@ -26,9 +26,13 @@ Microblog
                     <li><a href="{{ url_for('admin.index') }}">admin</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-
+                {% if current_user.is_authenticated%}
+                    <li><a href="#">Hello {{current_user.username}}</a></li>
+                    <li><a href="{{url_for('auth.logout')}}">Logout</a></li>
+                    {% else %}
                     <li><a href="{{ url_for('auth.login') }}">Login</a></li>
                     <li><a href="{{url_for('auth.register')}}">Register</a> </li>
+                    {% endif%}
                 </ul>
             </div>
         </div>

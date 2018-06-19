@@ -18,7 +18,7 @@ def create_app(config_name):
 
     bootstrap.init_app(app)
     db.init_app(app)
-    migrate.init_app(app)
+    migrate.init_app(app,db)
     login.init_app(app)
 
 
@@ -35,3 +35,5 @@ def create_app(config_name):
 
 
     return app
+
+from app import models

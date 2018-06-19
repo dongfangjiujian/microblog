@@ -8,6 +8,7 @@
         <td>username</td>
         <td>email</td>
         <td>password</td>
+        <td>authentication</td>
         <td>Delete</td>
 
     </thead>
@@ -17,7 +18,8 @@
         <td>{{u.id}}</td>
         <td>{{u.username}}</td>
         <td>{{u.email}}</td>
-        <td>{{u.password}}
+        <td>{{u.password}}</td>
+        <td>{% if u.admin == False %}Member{% else %}Adminstrator{% endif%}</td>
         <td><a href="{{ url_for('admin.delete',username=u.username)}}">Delete</a></td>
     </tr>
 

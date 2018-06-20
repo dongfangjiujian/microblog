@@ -1,6 +1,8 @@
 from flask_admin import Admin, BaseView, expose
-from app import admin
-from flask import redirect,url_for
+from app import admin,db
+from app.models import User
+from flask_admin.contrib.sqla import  ModelView
+
 
 #继承一个BaseView定义一项管理菜单
 class IndexView(BaseView):
@@ -9,6 +11,9 @@ class IndexView(BaseView):
     def index(self):
         return self.render('admin/index.html',title='index')
 
+    @expose('/test')
+    def test(self):
+        return 'test'
 
 
 #添加一个Hello菜单,这个视
@@ -22,3 +27,4 @@ class EditView(BaseView):
         return self.render('admin/index.html',title='edit')
 
 admin.add_view(EditView(name='edit'))
+admin.add_view(ModelView(User,db.session,name="用户管理"))

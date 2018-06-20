@@ -6,6 +6,8 @@ class Config:
 
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'this key is very hard to guess'
     SQLALCHEMY_TRACK_MODIFICATIONS = 'False'
+    BABEL_DEFAULT_LOCALE='zh'
+    DEBUG=True
 
     @staticmethod
     def init_app(app):

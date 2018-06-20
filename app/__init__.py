@@ -1,9 +1,11 @@
 from flask import Flask
+import os
 from flask_admin import Admin
 from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
+from flask_babel import Babel
 
 from config import config
 
@@ -12,7 +14,8 @@ login.login_view='auth.login'
 db= SQLAlchemy()
 migrate = Migrate()
 bootstrap = Bootstrap()
-admin=Admin(name="houtai")
+babel=Babel()
+admin=Admin(name="后台",template_mode='bootstrap3')
 
 
 
@@ -27,6 +30,7 @@ def create_app(config_name):
     migrate.init_app(app,db)
     login.init_app(app)
     admin.init_app(app)
+    babel.init_app(app)
 
 
 

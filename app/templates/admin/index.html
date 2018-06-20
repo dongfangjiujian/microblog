@@ -1,30 +1,7 @@
-{% extends 'base.html'%}
-{% block app_content%}
-{% if user_list%}
-<table class="table table-bordered">
-    <thead class="h3">
-
-        <td>id</td>
-        <td>username</td>
-        <td>email</td>
-        <td>password</td>
-        <td>authentication</td>
-        <td>Delete</td>
-
-    </thead>
-    <tbody>
-    {% for u in user_list%}
-    <tr>
-        <td>{{u.id}}</td>
-        <td>{{u.username}}</td>
-        <td>{{u.email}}</td>
-        <td>{{u.password}}</td>
-        <td>{% if u.admin == False %}Member{% else %}Adminstrator{% endif%}</td>
-        <td><a href="{{ url_for('admin.delete',username=u.username)}}">Delete</a></td>
-    </tr>
-
-    {% endfor%}
-    </tbody>
-</table>
-{% endif%}
+{% extends 'admin/master.html'%}
+{% block title%}
+{{title}}
 {% endblock%}
+{% block body%}
+hello
+{%endblock%}

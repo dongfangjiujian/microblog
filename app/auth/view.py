@@ -12,10 +12,10 @@ def login():
         return  redirect(url_for('main.index'))
     form = LoginForm()
     if form.validate_on_submit():
-        email = form.email.data
+        username = form.username.data
         password = form.password.data
-        user = User.query.filter_by(email = email).first()
-        if user is None or user.check_password(password):
+        user = User.query.filter_by(username = username).first()
+        if user is None or not user.check_password(password):
             flash('Invalid Email Address or Password')
             return redirect(url_for('auth.login'))
         login_user(user)

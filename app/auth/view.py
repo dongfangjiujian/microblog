@@ -15,7 +15,7 @@ def login():
         email = form.email.data
         password = form.password.data
         user = User.query.filter_by(email = email).first()
-        if user is None or user.check_password(password):
+        if user is None or not user.check_password(password):
             flash('Invalid Email Address or Password')
             return redirect(url_for('auth.login'))
         login_user(user)

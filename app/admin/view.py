@@ -1,5 +1,6 @@
 from . import admin
 from app import db
+from .form import UserModifyForm
 from flask_login import login_required,current_user
 from app.models import User
 
@@ -22,7 +23,20 @@ def index():
 def user_edit():
 
     user_list = User.query.all()
-    return render_template('admin/user_edit.html',title='ShowUsers',user_list=user_list)
+    return render_template('admin/user.html',title='ShowUsers',user_list=user_list)
+
+@admin.route('/edit/<username>',methods=['GET','POST'])
+def edit(username):
+    user = User.query.filter_by(username=username).first()
+
+    form = UserModifyForm()
+    form.username.data=username
+    form.email.data=user.email
+
+
+    if form.validate_on_submit():
+        pass
+    return render_template('admin/_edit.html',title=username+'Edit',form=form)
 
 @admin.route('/delete/<username>')
 def delete(username):

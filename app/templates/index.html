@@ -2,6 +2,10 @@
 {% block app_content%}
 <div class="row">
     <div class="col-md-8">welcome {{current_user.username}}</div>
-    <div class="col-md-4 ">side-bar</div>
+    <div class="col-md-4 list-group ">
+        {% for n in news%}
+        <a href="#" class="list-group-item">{{n.title}}</a>
+        {% endfor%}
+    </div>
 </div>
 {% endblock %}

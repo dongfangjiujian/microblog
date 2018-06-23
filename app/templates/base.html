@@ -26,6 +26,10 @@ Microblog
                     {% if current_user.is_authenticated  %}
                     <li><a href="{{ url_for('admin.index') }}">admin</a></li>
                     {% endif %}
+                    {% for category in categorys%}
+                    <li><a href="{{url_for('main.news',category=category.name)}}">{{category.name}}</a></li>
+
+                 {% endfor %}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                 {% if current_user.is_authenticated%}

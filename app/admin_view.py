@@ -16,7 +16,10 @@ class Index(BaseView):
     @expose('/')
     def index(self):
         user=User.query.filter_by(username=current_user.username).first()
+        news=News.query.first()
+
         print(user.role)
+        print(news.subject.id)
         return self.render('admin/index.html',title='index')
 
     @expose('/test')
@@ -63,9 +66,18 @@ class NewsManage(ModelView):
     def is_accessible(self):
         return current_user.is_authenticated
 
-#admin.add_view(NewsManage(News,db.session,name='新闻管理'))
+    column_exclude_list = {'content'}
 
 
+
+admin.add_view(NewsManage(News,db.session,name='新闻管理'))
+
+class NewsCategory(ModelView):
+    def is_accessible(self):
+        return current_user.is_authenticated
+
+
+admin.add_view(NewsCategory(News_Category,db.session,name='新闻分类'))
 
 class BackToWeb(BaseView):
 

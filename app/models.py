@@ -33,12 +33,16 @@ class News(db.Model):
     category_id=db.Column(db.Integer,db.ForeignKey('news__category.id'))
 
     def __repr__(self):
-        return '<Role{}>'.format(self.name)
+        return '<Role{}>'.format(self.title)
 
 class News_Category(db.Model):
     id = db.Column(db.Integer,primary_key=True)
-    name=db.Column(db.String(128),unique=True)
+    name=db.Column(db.String(128),index=True,unique=True)
+
     news=db.relationship('News',backref='subject')
+
+    def __repr__(self):
+        return self.name
 
 @login.user_loader
 def load_user(id):

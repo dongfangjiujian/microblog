@@ -1,4 +1,4 @@
 # microblog
 flask-learning
 
-flask-admin  baseView 跳转的是类名  每个类中 expose 路由都是‘/’
+在建立model的时候最好不要定义——tablename——属性 不然在migrate的时候容易出错

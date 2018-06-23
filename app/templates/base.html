@@ -23,7 +23,9 @@ Microblog
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url_for('main.index') }}">index</a></li>
+                    {% if current_user.is_authenticated  %}
                     <li><a href="{{ url_for('admin.index') }}">admin</a></li>
+                    {% endif %}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                 {% if current_user.is_authenticated%}

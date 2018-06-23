@@ -7,10 +7,7 @@ class User(db.Model,UserMixin):
     username = db.Column(db.String(128),index=True,unique=True)
     password = db.Column(db.String(128))
     email = db.Column(db.String(128),index=True,unique=True)
-    admin = db.Column(db.Boolean,default=False,index=True)
-
-
-
+    role_id=db.Column(db.Integer,db.ForeignKey('role.id'))
 
     def __repr__(self):
         return '<User{}>'.format(self.username)
@@ -20,6 +17,30 @@ class User(db.Model,UserMixin):
     def check_password(self,password):
         return check_password_hash(self.password,password)
 
+class Role(db.Model):
+
+    id = db.Column(db.Integer,primary_key=True)
+    name = db.Column(db.String(64),unique=True)
+    users=db.relationship('User',backref='role')
+
+    def __repr__(self):
+        return '<Role{}>'.format(self.name)
+
+class News(db.Model):
+    id = db.Column(db.Integer,primary_key=True)
+    title =db.Column(db.String(64),unique=True)
+    content=db.Column(db.Text)
+    category_id=db.Column(db.Integer,db.ForeignKey('news__category.id'))
+
+    def __repr__(self):
+        return '<Role{}>'.format(self.name)
+
+class News_Category(db.Model):
+    id = db.Column(db.Integer,primary_key=True)
+    name=db.Column(db.String(128),unique=True)
+    news=db.relationship('News',backref='subject')
+
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
+

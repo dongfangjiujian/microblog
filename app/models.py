@@ -1,5 +1,6 @@
 from app import db,login
 from flask_login import UserMixin
+from datetime import datetime
 from werkzeug.security import generate_password_hash,check_password_hash
 
 class User(db.Model,UserMixin):
@@ -30,6 +31,8 @@ class News(db.Model):
     id = db.Column(db.Integer,primary_key=True)
     title =db.Column(db.String(64),unique=True)
     content=db.Column(db.Text)
+    hit =db.Column(db.Integer,default=0)
+    time=db.Column(db.Date,default=datetime.utcnow())
     category_id=db.Column(db.Integer,db.ForeignKey('news__category.id'))
 
     def __repr__(self):
